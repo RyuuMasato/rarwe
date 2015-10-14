@@ -1,0 +1,19 @@
+html, body {
+  margin: 20px;
+}
+
+.page-header a h1 {
+  color: #555555;
+}
+
+.list-wrapper {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.navbar-default .navbar-nav > li > a.active,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+  color: #555555;
+  background-color: #e7e7e7;
+}
