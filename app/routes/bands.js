@@ -45,6 +45,12 @@ var pretender = Song.create({
   rating: 2
 });
 
+var BandsCollection = Ember.Object.extend({
+  content: [],
+  sortProperties: ['name:desc'],
+  sortedContent: Ember.computed.sort('content', 'sortProperties')
+});
+
 var bands = BandsCollection.create();
 
 var ledZeppelin = Band.create({ name: 'Led Zeppelin', songs: [blackDog] });
