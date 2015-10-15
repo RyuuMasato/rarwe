@@ -35,21 +35,21 @@ var BandsCollection = Ember.Object.extend({
 var bands = BandsCollection.create();
 
 var ledZeppelin = Band.create({ name: 'Led Zeppelin', songs: [blackDog] });
-var pearlJam = Band.create({ name: 'Pearl Jam', songs: [daughter, yellowLedbetter] });
+var pearlJam = Band.create({ name: 'Pearl Jam', songs: [yellowLedbetter, daughter] });
 var fooFighters = Band.create({ name: 'Foo Fighters', songs: [pretender] });
 
 bands.get('content').pushObjects([ledZeppelin, pearlJam, fooFighters]);
 
 export default Ember.Route.extend({
   model: function() {
-    return bands.get('sortedContent');
+    return bands.get('content');
   },
 
   actions: {
     createBand: function() {
       var name = this.get('controller').get('name');
       var band = Band.create({ name: name });
-      bands.pushObject(band);
+      bands.get('content').pushObject(band);
       this.get('controller').set('name', '');
     }
   }
