@@ -1,73 +1,23 @@
 import Ember from 'ember';
-import Band from '../models/band';
-import Song from '../models/song';
-
-var blackDog = Song.create({
-  title: 'Black Dog',
-  band: 'Led Zeppelin',
-  rating: 3
-});
-
-var yellowLedbetter = Song.create({
-  title: 'Yellow Ledbetter',
-  band: 'Pearl Jam',
-  rating: 4
-});
-
-var daughter = Song.create({
-  title: 'Daughter',
-  band: 'Pearl Jam',
-  rating: 5
-});
-
-var pretender = Song.create({
-  title: 'The Pretender',
-  band: 'Foo Fighters',
-  rating: 2
-});
-
-var BandsCollection = Ember.Object.extend({
-  content: [],
-  sortProperties: ['name:desc'],
-  sortedContent: Ember.computed.sort('content', 'sortProperties')
-});
-
-var bands = BandsCollection.create();
-
-var ledZeppelin = Band.create({
-  name: 'Led Zeppelin',
-  songs: [blackDog] });
-var pearlJam = Band.create({
-  name: 'Pearl Jam',
-  description: 'Pearl Jam is an American rock band, formed in Seattle, Washington in 1990.',
-  songs: [yellowLedbetter, daughter] });
-var fooFighters = Band.create({
-  name: 'Foo Fighters',
-  songs: [pretender] });
-
-bands.get('content').pushObjects([ledZeppelin, pearlJam, fooFighters]);
 
 export default Ember.Route.extend({
   model: function() {
-    return bands.get('sortedContent');
-  },
-
-  afterModel: function(model) {
-    if (bands.length === 1) {
-      this.transitionTo('bands.band', bands.get('firstObject'));
-    }
+    return this.store.findAll('band');
   },
 
   actions: {
     didTransition: function() {
       Ember.$(document).attr('title', 'Bands - Rock & Roll');
     },
-    createBand: function() {
-      var name = this.get('controller').get('name');
-      var band = Band.create({ name: name });
-      bands.get('sortedContent').pushObject(band);
-      this.get('controller').set('name', '');
-      this.transitionTo('bands.band.songs', band);
+    createBand: function () {
+      var route = this,
+          controller = this.get('controller');
+
+      var band = this.store.createRecord('band' ,controller.getProperties('name'));
+      band.save().then( function () {
+        controller.set('name', '');
+        route.transitionTo('bands.band.songs' ,band);
+      });
     }
   }
 });

@@ -9,6 +9,10 @@ export default Ember.Controller.extend({
     },
     save: function() {
       this.set('isEditing', false);
+      var controller = this.get('controller');
+          band = controller.get('model');
+
+      return band.save();
     }
   }
 });
