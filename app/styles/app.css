@@ -85,3 +85,7 @@ html, body {
 .band-description-header {
   margin-bottom: 20px;
 }
+
+.opaque {
+  opacity: 0.4;
+}

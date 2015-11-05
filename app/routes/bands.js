@@ -18,6 +18,11 @@ export default Ember.Route.extend({
         controller.set('name', '');
         route.transitionTo('bands.band.songs' ,band);
       });
+    },
+    removeBand: function (band) {
+      this.store.find('band', band.id).then(function (band) {
+        band.destroyRecord();
+      });
     }
   }
 });

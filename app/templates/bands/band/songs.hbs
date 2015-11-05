@@ -11,6 +11,7 @@
     {{/if}}
     {{#each model.songs as |song|}}
       <li class="list-group-item song">
+        <span class="opaque glyphicon glyphicon-remove" {{action "removeSong" song on="click"}}></span>
         {{song.title}}
         {{star-rating item=song rating=song.rating on-click=(action "updateRating")}}
       </li>
