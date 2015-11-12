@@ -1,7 +1,7 @@
 <div class="col-md-4">
   <div class="list-group">
     <div class="list-group-item">
-      <form {{action "createBand" on="submit"}}>
+      <form class="new-band-form" {{action "createBand" on="submit"}}>
         {{input type="text" class="new-band" placeholder="New band" value=name}}
         <button type="submit" class="btn btn-primary btn-sm new-band-button"
         disabled={{isAddButtonDisabled}}>Add</button>
