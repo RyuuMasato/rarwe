@@ -13,17 +13,17 @@ test('Reders the full and empty stars correctly', function(assert) {
   this.set('song', song);
   this.set('max-rating', 5);
 
-  this.render(hbs`{{star-rating item=song rating=song.rating maxRating=maxRating}}`);
+  this.render(hbs`{{star-rating item=song rating=song.rating maxRating=max-rating}}`);
 
   assert.equal(this.$('.glyphicon-star').length, 4, "The right amount of stars is rendered");
   assert.equal(this.$('.glyphicon-star-empty').length, 1, "The right amount of empty stars is rendered");
 
-  this.set('maxRating', 10);
+  this.set('max-rating', 10);
 
   assert.equal(this.$('.glyphicon-star').length, 4, "The right amount of stars is rendered");
   assert.equal(this.$('.glyphicon-star-empty').length, 6, "The right amount of empty stars is rendered");
 
-  this.set('rating', 2);
+  this.set('song.rating', 2);
 
   assert.equal(this.$('.glyphicon-star').length, 2, "The right amount of stars is rendered");
   assert.equal(this.$('.glyphicon-star-empty').length, 8, "The right amount of empty stars is rendered");

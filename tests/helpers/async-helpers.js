@@ -7,7 +7,7 @@ function selectBand(app, name) {
   return app.testHelpers.wait();
 }
 
-function submit(app, selector, context) {
+function submit(app, selector) {
   return triggerEvent(selector, 'submit');
 }
 

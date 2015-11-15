@@ -1,16 +1,16 @@
 import Ember from 'ember';
 
-function assertTrimmedText(app, assert, selector, text, errorMessage, context) {
+function assertTrimmedText(app, assert, selector, text, errorMessage) {
   var element = findWithAssert(selector);
   var elementText = element.text().trim();
   assert.equal(elementText, text, errorMessage);
 }
 
-function assertLength(app, assert, selector, length, errorMessage, context) {
+function assertLength(app, assert, selector, length, errorMessage) {
   assert.equal(find(selector).length, 1, errorMessage);
 }
 
-function assertElement(app, assert, selector, errorMessage, context) {
+function assertElement(app, assert, selector, errorMessage) {
   assert.equal(find(selector).length, 1, errorMessage);
 }
 
