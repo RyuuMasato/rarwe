@@ -2,6 +2,8 @@ import Ember from 'ember';
 import startApp from 'rarwe/tests/helpers/start-app';
 import Pretender from 'pretender'; // import Stub
 import { module, test } from 'qunit';
+import httpStubs from '../helpers/http-stubs';
+
 
 var application,
     server;
@@ -19,14 +21,11 @@ module('Acceptance | bands', {
 
 test('List bands', function(assert) {
   server = new Pretender(function() {
-    this.get('/bands', function() {
-      var bands = JSON.stringify({
-        bands: [
-          { id: 1, name: 'Radiohead' },
-          { id: 2, name: 'Long Distance Calling' },
-        ]
-      });
-      return [200, {"Content-Type": "application/json"}, bands];
+    httpStubs.stubBands(this, {
+      bands: [
+        { id: 1, name: 'Radiohead' },
+        { id: 2, name: 'Long Distance Calling' },
+      ]
     });
   });
 
@@ -39,21 +38,12 @@ test('List bands', function(assert) {
 
 test('Create a new band', function(assert) {
   server = new Pretender(function() {
-    this.get('/bands', function() {
-      var bands = JSON.stringify({
-        bands: [
-          { id: 1, name: 'Radiohead' }
-        ]
-      });
-      return [200, {"Content-Type": "application/json"}, bands];
+    httpStubs.stubBands(this, {
+      bands: [
+        { id: 1, name: 'Radiohead' },
+      ]
     });
-
-    this.post('/bands', function() {
-      var band = JSON.stringify({
-        band: { id: 2, name: 'Long Distance Calling' }
-      });
-      return [200, {"Content-Type": "application/json" }, band];
-    });
+    httpStubs.stubCreateBand(this);
   });
 
   visit('/bands')
@@ -68,24 +58,12 @@ test('Create a new band', function(assert) {
 
 test('Create a new song in two steps', function(assert) {
   server = new Pretender(function() {
-    this.get('/bands', function() {
-      var bands = JSON.stringify({
-        bands: [
-          { id: 1, name: 'Radiohead' }
-        ]
-      });
-      return [200, {"Content-Type": "application/json"}, bands];
+    httpStubs.stubBands(this, {
+      bands: [
+        { id: 1, name: 'Radiohead' },
+      ]
     });
-
-    this.post('/songs', function() {
-      var song = JSON.stringify({
-        song: {
-          id: 1,
-          title: 'Killer Cars'
-        }
-      });
-      return [200, {"Content-Type": "application/json"}, song];
-    });
+    httpStubs.stubCreateSong(this);
   });
 
   visit('/')
@@ -97,3 +75,11 @@ test('Create a new song in two steps', function(assert) {
     assertElement(assert, '.song .song:contains("Killer Cars")', "Creates the song and displays it in the list");
   });
 });
+
+// test('Sort songs in various ways', function(assert) {
+//   server = new Pretender(function() {
+//     httpStubs.stubBands(this, {
+//
+//     })
+//   })
+// })

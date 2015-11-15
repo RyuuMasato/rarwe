@@ -89,3 +89,52 @@ html, body {
 .opaque {
   opacity: 0.4;
 }
+
+.song-filter-search-panel {
+  padding: 10px 15px;
+  margin-bottom: -1px;
+  backgroud-color: #fff;
+  border: 1px solid #ddd;
+  display: block;
+}
+
+.song-filter-search-panel .active .sortingbutton {
+  z-index: 2;
+  color: #fff;
+  background-color: #428bca;
+  border-color: #428bca;
+}
+
+.sorting-link:hover {
+  text-decoration: none;
+}
+
+.song-filter-search-panel .sorting-link + .sorting-link {
+  margin-left: 5px;
+}
+
+.sorting-panel {
+  float: left;
+}
+
+@media (max-width: 690px) {
+  .sorting-panel {
+    margin-bottom: 5px;
+  }
+}
+
+.search-panel {
+  float: right;
+}
+
+.search-panel input {
+  padding: 4px 12px 6px 12px;
+}
+
+.search-panel input-group-btn {
+  display: inline-block;
+}
+
+.search-panel input-group-btn .search-button {
+  margin-left: -5px;
+}
