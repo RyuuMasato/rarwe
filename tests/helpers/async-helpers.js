@@ -7,8 +7,8 @@ function selectBand(app, name) {
   return app.testHelpers.wait();
 }
 
-function submit(app, selector) {
-  return triggerEvent(selector, 'submit');
+function submit(app, selector, context) {
+  return triggerEvent(selector, 'submit', context);
 }
 
 Ember.Test.registerAsyncHelper('selectBand', selectBand);

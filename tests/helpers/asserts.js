@@ -7,7 +7,7 @@ function assertTrimmedText(app, assert, selector, text, errorMessage) {
 }
 
 function assertLength(app, assert, selector, length, errorMessage) {
-  assert.equal(find(selector).length, 1, errorMessage);
+  assert.equal(find(selector).length, length, errorMessage);
 }
 
 function assertElement(app, assert, selector, errorMessage) {

@@ -2,8 +2,8 @@ export default {
   stubBands: function(pretender, data) {
     this.bandCount = data.bands ? data.bands.length : 0;
     this.songCount = data.songs ? data.songs.length : 0;
-    pretender.get('/bands', function(){
-      return [200, {"Content-Type": "application/json"}, JSON.stringify(data)];
+    pretender.get('/bands', function() {
+      return [200, {"Content-Type": "application/json"}, JSON.stringify(data) ];
     });
   },
 
@@ -21,7 +21,7 @@ export default {
     var stubs = this;
     pretender.post('/songs', function(request) {
       var payload = JSON.parse(request.requestBody);
-      payload.song.id = stubs.songCount + 1;
+      payload.song.id = stubs.songCount;
       stubs.songCount += 1;
       return [200, {"Content-Type": "application/json"}, JSON.stringify(payload)];
     });
