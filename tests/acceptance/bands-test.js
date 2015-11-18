@@ -76,10 +76,32 @@ test('Create a new song in two steps', function(assert) {
   });
 });
 
-// test('Sort songs in various ways', function(assert) {
-//   server = new Pretender(function() {
-//     httpStubs.stubBands(this, {
-//
-//     })
-//   })
-// })
+test('Sort songs in various ways', function(assert) {
+  server = new Pretender(function() {
+    httpStubs.stubBands(this, {
+      bands: [
+        { id: 1, name: 'Them Crooked Vultures', songs: [1, 2, 3, 4]}
+      ],
+      songs: [
+        { id: 1, title: 'Elephants', rating: 5 },
+        { id: 2, title: 'New Fang', rating: 4 },
+        { id: 3, title: 'Mind Eraser, No Chaser', rating: 4 },
+        { id: 4, title: 'Spinning in Daffodils', rating: 5 },
+
+      ]
+    });
+  });
+
+  selectBand('Them Crooked Vultures')
+    .then(function() {
+      assert.equal(currentURL(), '/bands/1/songs?sort=titleDesc');
+      assertTrimmedText(assert, '.song:first', 'Spinning in Daffodils', "The first song is the lowest ranked, first in the alphabet");
+      assertTrimmedText(assert, '.song:last', 'Elephants', "The last song is the one that is the first in the alphabet");
+    })
+    .click('button.sort-rating-asc')
+    .then(function() {
+      assert.equal(currentURL, '/bands/1/songs?sort=titleAsc');
+      assertTrimmedText(assert, '.song:first', 'Mind Eraser, No Chaser', "The first song is the lowest ranked, first in the alphabet");
+      assertTrimmedText(assert, '.song:last', 'Spinning Daffodils', "The last song is the highest ranked, last in the alphabet");
+    });
+});
