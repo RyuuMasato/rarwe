@@ -10,7 +10,7 @@
       </div>
     {{/if}}
     <div class="list-group songs">
-      {{#each model.songs as |song|}}
+      {{#each sortedSongs as |song|}}
         <div class="list-group-item song">
           <span class="opaque glyphicon glyphicon-remove" {{action "removeSong" song on="click"}}></span>
             {{song.title}}
