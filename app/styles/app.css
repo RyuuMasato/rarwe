@@ -131,10 +131,10 @@ html, body {
   padding: 4px 12px 6px 12px;
 }
 
-.search-panel input-group-btn {
+.search-panel .input-group-btn {
   display: inline-block;
 }
 
-.search-panel input-group-btn .search-button {
+.search-panel .input-group-btn .search-button {
   margin-left: -5px;
 }

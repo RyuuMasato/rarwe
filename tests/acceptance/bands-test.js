@@ -98,7 +98,7 @@ test('Sort songs in various ways', function(assert) {
       assertTrimmedText(assert, '.song:first', 'Elephants', "The first song is the highest ranked, first in the alphabet");
       assertTrimmedText(assert, '.song:last', 'New Fang', "The last song is the lowest ranked, last in the alphabet");
     })
-    .click('button.sort-rating-desc')
+    .click('button.sort-title-desc')
     .then(function() {
       assert.equal(currentURL(), '/bands/1/songs?sort=titleDesc');
       assertTrimmedText(assert, '.song:first', 'Spinning in Daffodils', "The first song is the lowest ranked, first in the alphabet");
@@ -106,8 +106,35 @@ test('Sort songs in various ways', function(assert) {
     })
     .click('button.sort-rating-asc')
     .then(function() {
-      assert.equal(currentURL, '/bands/1/songs?sort=titleAsc');
+      assert.equal(currentURL(), '/bands/1/songs?sort=ratingAsc');
       assertTrimmedText(assert, '.song:first', 'Mind Eraser, No Chaser', "The first song is the lowest ranked, first in the alphabet");
       assertTrimmedText(assert, '.song:last', 'Spinning in Daffodils', "The last song is the highest ranked, last in the alphabet");
+    });
+});
+
+test('Search songs', function(assert) {
+  server = new Pretender(function() {
+    httpStubs.stubBands(this, {
+      bands: [
+        { id: 1, name: 'Them Crooked Vultures', songs: [1, 2, 3, 4, 5]}
+      ],
+      songs: [
+        { id: 1, title: 'Elephants', rating: 5 },
+        { id: 2, title: 'New Fang', rating: 4 },
+        { id: 3, title: 'Mind Eraser, No Chaser', rating: 4 },
+        { id: 4, title: 'Spinning in Daffodils', rating: 5 },
+        { id: 5, title: 'No One Loves Me & Neither Do I', rating: 3 },
+      ]
+    });
+  });
+  visit('/bands/1/songs')
+    .fillIn('.search-field', 'no')
+    .then(function() {
+      assertLength(assert, '.song', 2, "The songs matching the search term are displayed");
+    })
+    .click('button.sort-title-desc')
+    .then(function() {
+      assertTrimmedText(assert, '.song:first', 'No One Loves Me & Neither Do I', "The matching song that comes later in the alphabet appears on top");
+      assertTrimmedText(assert, '.song:last', 'Mind Eraser, No Chaser', "The matching song that comes sooner in the alphabet appears on top");
     });
 });
