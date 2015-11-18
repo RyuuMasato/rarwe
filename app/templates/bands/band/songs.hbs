@@ -8,6 +8,27 @@
         disabled={{isAddButtonDisabled}}>Add</button>
       </form>
       </div>
+      <div class="btn-group song-filter-search-panel" role="group">
+        <div class="sorting-panel">
+          <button type="button" class="btn btn-default sort-rating-desc sorting-button" {{action "setSorting" "ratingDesc"}}>
+            Rating
+            <span class="glyphicon glyphicon-arrow-down"></span>
+          </button>
+          <button type="button" class="btn btn-default sort-rating-asc sorting-button" {{action "setSorting" "ratingAsc"}}>
+            Rating
+            <span class="glyphicon glyphicon-arrow-up"></span>
+          </button>
+          <button type="button" class="btn btn-default sort-title-desc sorting-button" {{action "setSorting" "titleDesc"}}>
+            Title
+            <span class="glyphicon glyphicon-arrow-down"></span>
+          </button>
+          <button type="button" class="btn btn-default sort-title-asc sorting-button" {{action "setSorting" "titleAsc"}}>
+            Title
+            <span class="glyphicon glyphicon-arrow-up"></span>
+          </button>
+        </div>
+        <div class="clearfix"></div>
+      </div>
     {{/if}}
     <div class="list-group songs">
       {{#each sortedSongs as |song|}}
