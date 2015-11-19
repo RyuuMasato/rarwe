@@ -98,7 +98,7 @@ html, body {
   display: block;
 }
 
-.song-filter-search-panel .active .sortingbutton {
+.song-filter-search-panel .active .sorting-button {
   z-index: 2;
   color: #fff;
   background-color: #428bca;
@@ -137,4 +137,31 @@ html, body {
 
 .search-panel .input-group-btn .search-button {
   margin-left: -5px;
+}
+
+.loading-pane {
+  margin: 25px auto;
+}
+
+.loading-message {
+  text-align: center;
+  color: #aaa;
+}
+
+.error-pane {
+  background-color: rgba(255, 176, 176, 0.33);
+  margin: 25px auto;
+}
+
+.error-message {
+  text-align: center;
+  color: #e22626;
+  line-height: 100px;
+}
+
+.spinner {
+  background: url('/images/ajax-loader.gif') no-repeat;
+  heigth: 31px;
+  width: 31px;
+  margin: 0px auto;
 }
