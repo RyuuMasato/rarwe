@@ -5,6 +5,7 @@ var contentSecurityPolicy = {
   'font-src' : "'self'" ,
   'connect-src' : "'self' localhost:* json-api.rockandrollwithemberjs.com:*" ,
   'img-src' : "'self'" ,
+  // 'img-src' : "'self'" ,
   'style-src' : "'self' 'unsafe-inline'" ,
   'media-src' : "'self'"
 };

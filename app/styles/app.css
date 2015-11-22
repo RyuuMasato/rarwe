@@ -160,9 +160,9 @@ html, body {
 }
 
 .spinner {
-  /* TODO: add ajax-loader.gif (securityPolicy states 'self') */
-  /*background: url('../images/ajax-loader.png') no-repeat;*/
+  background: url('/assets/images/ajax-loader.gif') no-repeat;
   heigth: 31px;
   width: 31px;
   margin: 0px auto;
+  line-height: 31px;
 }
