@@ -86,7 +86,7 @@ test('Sort songs in various ways', function(assert) {
         { id: 1, title: 'Elephants', rating: 5 },
         { id: 2, title: 'New Fang', rating: 4 },
         { id: 3, title: 'Mind Eraser, No Chaser', rating: 4 },
-        { id: 4, title: 'Spinning in Daffodils', rating: 5 },
+        { id: 4, title: 'Spinning In Daffodils', rating: 5 },
 
       ]
     });
@@ -101,14 +101,14 @@ test('Sort songs in various ways', function(assert) {
     .click('button.sort-title-desc')
     .then(function() {
       assert.equal(currentURL(), '/bands/1/songs?sort=titleDesc');
-      assertTrimmedText(assert, '.song:first', 'Spinning in Daffodils', "The first song is the lowest ranked, first in the alphabet");
+      assertTrimmedText(assert, '.song:first', 'Spinning In Daffodils', "The first song is the lowest ranked, first in the alphabet");
       assertTrimmedText(assert, '.song:last', 'Elephants', "The last song is the one that is the first in the alphabet");
     })
     .click('button.sort-rating-asc')
     .then(function() {
       assert.equal(currentURL(), '/bands/1/songs?sort=ratingAsc');
       assertTrimmedText(assert, '.song:first', 'Mind Eraser, No Chaser', "The first song is the lowest ranked, first in the alphabet");
-      assertTrimmedText(assert, '.song:last', 'Spinning in Daffodils', "The last song is the highest ranked, last in the alphabet");
+      assertTrimmedText(assert, '.song:last', 'Spinning In Daffodils', "The last song is the highest ranked, last in the alphabet");
     });
 });
 
@@ -122,7 +122,7 @@ test('Search songs', function(assert) {
         { id: 1, title: 'Elephants', rating: 5 },
         { id: 2, title: 'New Fang', rating: 4 },
         { id: 3, title: 'Mind Eraser, No Chaser', rating: 4 },
-        { id: 4, title: 'Spinning in Daffodils', rating: 5 },
+        { id: 4, title: 'Spinning In Daffodils', rating: 5 },
         { id: 5, title: 'No One Loves Me & Neither Do I', rating: 3 },
       ]
     });
