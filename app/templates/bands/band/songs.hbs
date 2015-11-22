@@ -50,7 +50,7 @@
       {{#each sortedSongs as |song|}}
         <div class="list-group-item song">
           {{!-- <span class="opaque glyphicon glyphicon-remove" {{action "removeSong" song on="click"}}></span> --}}
-            {{song.title}}
+            {{capitalize song.title}}
             {{star-rating item=song rating=song.rating on-click=(action "updateRating")}}
         </div>
       {{/each}}
