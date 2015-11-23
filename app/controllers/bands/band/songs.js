@@ -17,7 +17,7 @@ export default Ember.Controller.extend({
     sortBy: 'sort',
     searchTerm: 's',
   },
-  sortBy: 'ratingDesc',
+  sortBy: 'titleDesc',
   searchTerm: '',
 
   sortProperties: Ember.computed('sortBy', function() {

@@ -9,7 +9,7 @@
     </div>
     {{#each model as |band|}}
       {{#link-to "bands.band" band.id class="list-group-item band-link"}} {{!-- band if no beforeModel else band.slug --}}
-        <span class="opaque glyphicon glyphicon-remove" {{action "removeBand" band on="click"}}></span>
+        {{!-- <span class="opaque glyphicon glyphicon-remove" {{action "removeBand" band on="click"}}></span> --}}
         {{capitalize band.name}}
         <span class="pointer glyphicon glyphicon-chevron-right"></span>
       {{/link-to}}
