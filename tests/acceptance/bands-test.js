@@ -95,14 +95,14 @@ test('Sort songs in various ways', function(assert) {
   selectBand('Them Crooked Vultures')
     .then(function() {
       assert.equal(currentURL(), '/bands/1/songs');
-      assertTrimmedText(assert, '.song:first', 'Elephants', "The first song is the highest ranked, first in the alphabet");
-      assertTrimmedText(assert, '.song:last', 'New Fang', "The last song is the lowest ranked, last in the alphabet");
-    })
-    .click('button.sort-title-desc')
-    .then(function() {
-      assert.equal(currentURL(), '/bands/1/songs?sort=titleDesc');
       assertTrimmedText(assert, '.song:first', 'Spinning In Daffodils', "The first song is the lowest ranked, first in the alphabet");
       assertTrimmedText(assert, '.song:last', 'Elephants', "The last song is the one that is the first in the alphabet");
+    })
+    .click('button.sort-rating-desc')
+    .then(function() {
+      assert.equal(currentURL(), '/bands/1/songs?sort=ratingDesc');
+      assertTrimmedText(assert, '.song:first', 'Elephants', "The first song is the highest ranked, first in the alphabet");
+      assertTrimmedText(assert, '.song:last', 'New Fang', "The last song is the lowest ranked, last in the alphabet");
     })
     .click('button.sort-rating-asc')
     .then(function() {

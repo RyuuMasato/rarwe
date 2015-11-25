@@ -248,8 +248,8 @@ input {
 
 .spinner {
   background: url('/assets/images/ajax-loader.gif') no-repeat;
-  heigth: 120px;
-  width: 120px;
+  heigth: 35px;
+  width: 35px;
   margin: 0px auto;
-  line-height: 120px;
+  line-height: 35px;
 }
