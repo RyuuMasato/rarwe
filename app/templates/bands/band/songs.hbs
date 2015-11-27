@@ -48,7 +48,17 @@
         <div class="list-group-item song">
           {{!-- <span class="opaque glyphicon glyphicon-remove" {{action "removeSong" song on="click"}}></span> --}}
             {{capitalize song.title}}
-            {{star-rating item=song rating=song.rating on-click=(action "updateRating")}}
+              {{#star-rating item=song rating=song.rating as |stars|}}
+                {{#liquid-bind stars as |liquidStars|}}
+                  {{#each liquidStars as |star|}}
+                    <span class="star-rating glyphicon
+                      {{if star.full "glyphicon-star" "glyphicon-star-empty"}}"
+                      {{action "updateRating" song star.rating}}>
+                    </span>
+                  {{/each}}
+                {{/liquid-bind}}
+              {{/star-rating}}
+            {{!-- {{star-rating item=song rating=song.rating on-click=(action "updateRating")}} --}} {{!-- Ye olde way --}}
         </div>
       {{/each}}
     </div>
