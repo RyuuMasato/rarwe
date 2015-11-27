@@ -37,6 +37,7 @@
     "ember-data": "2.0.0",
     "ember-disable-proxy-controllers": "^1.0.0",
     "ember-export-application-global": "^1.0.3",
-    "liquid-fire": "0.21.3"
+    "liquid-fire": "0.21.3",
+    "ember-cli-star-rating": "*"
   }
 }
