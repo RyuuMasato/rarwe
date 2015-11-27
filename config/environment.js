@@ -3,9 +3,8 @@ var contentSecurityPolicy = {
   'default-src' : "'none'" ,
   'script-src' : "'self'" ,
   'font-src' : "'self'" ,
-  'connect-src' : "'self' localhost:* json-api.rockandrollwithemberjs.com:*" ,
+  'connect-src' : "'self' wss://s-dal5-nss-22.firebaseio.com/.ws?v=5&ns=rock-and-roll-ember:*" ,
   'img-src' : "'self'" ,
-  // 'img-src' : "'self'" ,
   'style-src' : "'self' 'unsafe-inline'" ,
   'media-src' : "'self'"
 };
@@ -14,6 +13,7 @@ module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'rarwe',
     environment: environment,
+    firebase: 'https://rock-and-roll-ember.firebaseio.com',
     baseURL: '/',
     locationType: 'auto',
     apiHost: 'http://json-api.rockandrollwithemberjs.com',

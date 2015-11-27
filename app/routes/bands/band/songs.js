@@ -19,8 +19,12 @@ export default Ember.Route.extend({
 
       var song = this.store.createRecord('song', {
         title: controller.get('title'),
-        band: band
+        band: band,
+        rating: 0
       });
+
+      band.get('songs').addObject(song);
+
       song.save().then(function () {
         controller.set('title', '');
       });

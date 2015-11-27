@@ -1,18 +1,26 @@
 import DS from 'ember-data';
 import ENV from '../config/environment';
+import Firebase from 'firebase';
+import FirebaseAdapter from 'emberfire/adapters/firebase';
 
 let applicationAdapter;
 
 if (ENV.environment === "test") {
-  applicationAdapter = DS.RESTAdapter;
+  applicationAdapter = DS.RESTAdapter.extend({
+    host: ENV.apiHost,
+
+    shouldBackgroundReloadRecord() {
+      return false;
+    }
+  });
 } else {
-  applicationAdapter = DS.JSONAPIAdapter;
+  applicationAdapter = FirebaseAdapter.extend({
+    firebase: new Firebase(ENV.firebase),
+
+    shouldBackgroundReloadRecord() {
+      return false;
+    }
+  });
 }
 
-export default applicationAdapter.extend({
-  host: ENV.apiHost,
-
-  shouldBackgroundReloadRecord() {
-    return false;
-  },
-});
+export default applicationAdapter;
